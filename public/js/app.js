@@ -1,5 +1,5 @@
 const burgerTemplate = (burgerName, id, is_favorite) => {
-  const burgerContainer - $('<div>').attr({
+  const burgerContainer = $('<div>').attr({
       class: 'content-burger__list',
       id: id
   });
@@ -13,7 +13,7 @@ const burgerTemplate = (burgerName, id, is_favorite) => {
 
   const button = $('<button>').attr({
       'data-id': id,
-      class: 'btn btn-btn-default favorites'
+      'class': 'btn btn-btn-default favorites',
       'data-state': is_favorite
     });
 

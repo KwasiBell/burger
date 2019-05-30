@@ -9,7 +9,6 @@ router.get("/", function (req, res) {
           message: 'Not able to query the database'
         });
       }
-
       res.render("index", { burgers, style: 'index'});
   });
 
@@ -37,7 +36,7 @@ router.post('/add', (req,res) => {
       });
     }
       return res.json({
-        burger_name: burgerName
+        burger_name: burgerName,
         id: burger.instertId,
         is_favorite: 0
       });
