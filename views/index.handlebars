@@ -1,0 +1,16 @@
+<div class="container content">
+  <h1>Burger App</h1>
+
+  <div class="content-burger">
+    {{#each burgers}}
+    <div class="content-burger__list" id={{id}}>
+
+      <p>{{burger_name}}</p>
+      <button class="btn btn-default favorites" data-id="{{id}}" data-state="{{is_favorite}}">
+        {{#if is_favorite}} unfavorite {{else}} add to Favorite {{/if}}
+        </button>
+        </div>
+        {{/each}}
+        </div>
+
+      </div>
