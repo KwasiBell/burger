@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
 const orm = require('../config/orm');
+
 router.get("/", function (req, res) {
  orm.selectAll(function(error, burgers) {
       if(error) {
@@ -16,7 +16,14 @@ router.get("/", function (req, res) {
 
 router.get('/every', (req,res) => {
 
-  res.render('every_burger');
+  orm.selectAll(function(error, burgers) {
+    if(error) {
+      return res.status(501).json({
+        message: 'Not able to query the database'
+      });
+    }
+    res.render("allBurgers", { burgers, style: 'all', title: 'View all burgers' });
+});
 });
 
 router.get('/goats', (req,res) => {
