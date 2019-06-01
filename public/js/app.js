@@ -65,4 +65,54 @@ $('button[type="submit"]').on('click', function(event) {
     .catch(addBurgerFail);
 
 
-});;
+});
+
+const removeBurgerOneDelete = (burger) => {
+  const id = burger.id;
+  $(`.all-burgers .burger[data-id=${id}]`).remove();
+
+};
+
+ const removeBurgerFailed = () => {
+   alert('Failed deleting burger');
+ };
+
+
+$('.all-burgers .burger button').on('click', function() {
+    const id = $(this).attr('data-id');
+
+    $.ajax({
+        url: '/delete/' + id,
+        method: 'DELETE'
+    })
+      .then(removeBurgerOneDelete)
+      .catch(removeBurgerFailed);
+  });
+
+
+  //for favorite page
+  const addBurgerToFavorite = (burger) => {
+    const id = burger.id;
+    $(`#${id}`).remove();
+  };
+
+   const addBurgerToFavoriteFail = () => {
+     alert('Fail adding it to favorite');
+   };
+
+
+
+  $(document).on('click', '.favorites', function() {
+      const id = $(this).attr('data-id');
+      const value = $(this).attr(data-state);
+      let condition = value === '0' ? false : true;
+
+      $.ajax({
+
+        url: `/${id}/${condition}`,
+        method: 'PUT'
+      })
+        .then(addBurgerToFavorite)
+        .catch(addBurgerToFavoriteFail);
+
+  })

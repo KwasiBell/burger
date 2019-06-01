@@ -3,7 +3,7 @@ const router = express.Router();
 const orm = require('../config/orm');
 
 router.get("/", function (req, res) {
- orm.selectAll(function(error, burgers) {
+ orm.selectAllBy('is_favorite', false, function(error, burgers) {
       if(error) {
         return res.status(501).json({
           message: 'Not able to query the database'
@@ -14,7 +14,7 @@ router.get("/", function (req, res) {
 
 });
 
-router.get('/every', (req,res) => {
+router.get('/all', (req,res) => {
 
   orm.selectAll(function(error, burgers) {
     if(error) {
@@ -26,9 +26,9 @@ router.get('/every', (req,res) => {
 });
 });
 
-router.get('/goats', (req,res) => {
+router.get('/favorites', (req,res) => {
 
-  res.render('goats');
+  res.render('favorites');
 });
 
 
@@ -54,6 +54,42 @@ router.post('/add', (req,res) => {
 
 });
 
+router.delete('/delete/:id', () => {
+const id = req.params.id;
+
+orm.deleteOne(id, function(err, burger) {
+  if (err) {
+    return res.status(501).json({
+        message: 'Not able to delete burger'
+    });
+  }
+return res.json({
+  id
+});
+
+});
 
 
+
+});
+
+router.put('/:id/:value', (req, res) => {
+  const id = req.params.id;
+  const condition = JSON.parse(req.params.value);
+
+  orm.updateOne(condition, id, function(error, burger) {
+    if (error) {
+      return res.status(501).json({
+        message: 'Not able to add burger to your favorite'
+      });
+    }
+
+    return res.json({
+      id: id
+    });
+
+  });
+
+
+});
 module.exports = router;

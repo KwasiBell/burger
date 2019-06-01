@@ -1,5 +1,17 @@
+  {{> header }}
+
 <div class="container content">
   <h1>Burger App</h1>
+
+<form>
+<div class="form-group">
+  <input type="text" required placeholder="Add a burger " class="form-control" name="burger_name">
+</div>
+
+<button type="submit" class="btn btn-default">Add burger</button>
+</form>
+
+
 
   <div class="content-burger">
     {{#each burgers}}
