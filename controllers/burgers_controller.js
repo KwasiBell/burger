@@ -18,9 +18,11 @@ router.get('/all', (req, res) => {
 
   orm.selectAll(function (error, burgers) {
     if (error) {
-      return res.status(501).json({
-        message: 'Not able to query the database'
-      });
+      // return res.status(501).json({
+      //   message: 'Not able to query the database'
+      // });
+      console.log(error);
+      return res.status(501).json(error);
     }
     console.log("/all burgers");
     console.log(burgers);
