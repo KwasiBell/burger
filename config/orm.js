@@ -5,16 +5,20 @@ const connection = require("./connection");
 const orm = {
     selectAll: function (cb) {
         connection.query("SELECT * FROM burgers", function (err, data) {
-            if (err) cb(err, null);return;
+          if (err){cb(err, null);}
+          else{
             cb(null, data);
+          }
         });
     },
 
     selectAllBy: function(condition, value, cb) {
         const sqlQuery = `SELECT * FROM burgers WHERE ${condition } = ${value}`;
         connection.query(sqlQuery, function (err, data) {
-            if (err) cb(err, null);
-            cb(null, data)
+          if (err){cb(err, null);}
+          else{
+            cb(null, data);
+          }
         });
     },
     insertOne: function (burgerName, cb) {
@@ -39,13 +43,7 @@ const orm = {
             if (err) cb(err, null);
             cb(null, data)
         });
-    },
-      updateOne: function(condition, id, cb) {
-        const sqlQuery = `DELETE FROM burgers WHERE id = ${id}`;
-        connection.query(sqlQuery, function (err, data) {
-          if (err) cb(err, null);
-        });
-      }
+    }
 
   };
 
