@@ -5,7 +5,7 @@ const connection = require("./connection");
 const orm = {
     selectAll: function (cb) {
         connection.query("SELECT * FROM burgers", function (err, data) {
-            if (err) cb(err, null);
+            if (err) cb(err, null);return;
             cb(null, data);
         });
     },
