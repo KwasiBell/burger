@@ -50,7 +50,7 @@ const addBurgerFail = (response) => {
 $('button[type="submit"]').on('click', function(event) {
   event.preventDefault();
 
-  const burgerName = $('input[name="burger_name"]').val();
+  const burger_name = $('input[name="burger_name"]').val();
 
   $.ajax({
       url: '/add',
