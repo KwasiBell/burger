@@ -1,10 +1,12 @@
-{{> header }}
+  {{> header }}
 
-<h2>I am the favorites</h2>
+<h2>Your favorite burgers!</h2>
 
 {{#each burgers}}
 <div class="content-burger__list" id={{id}}>
-
+<div class="main-favorites__burgers">
+  {{#each result}} {{> displayBurger }} {{/each}}
+</div>
   <p>{{burger_name}}</p>
 
 </div>
